@@ -23,12 +23,30 @@ function getDay(date, lang) {
       6: 'Суббота',
     },
   };
+
+  let newDate = new Date(date);
+  if (lang === 'en') {
+    return dayNames.en[newDate.getDay()];
+  } else if (lang === 'ru') {
+    return dayNames.ru[newDate.getDay()];
+  }
 }
 
 // Принимает объект даты, и должно вернуть компоненты даты в виде строки.
 // Вид должен быть такой 12:02(часы и минуты), то есть если у вас одно число на одном из
 // компонентов, то добавляем 0 перед ним
-function formatTime(date) {}
+function formatTime(date) {
+  // let a = new date();
+  // console.log(date.getHours() + ':' + date.getMinutes());
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  let result = '';
+  // if (hours < 10) result = `0${hours}`;
+  result = hours < 10 ? `0${hours}:` : `${hours}:`;
+  result = minutes < 10 ? `${result}0${minutes}` : `${result}${minutes}`;
+  return result;
+  // console.log(result);
+}
 
 /*
 Напишите функцию getLastDayOfMonth(year, month), 
