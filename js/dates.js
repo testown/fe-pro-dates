@@ -24,10 +24,7 @@ function getDay(date, lang) {
     },
   };
 
-  let newDate = new Date(date);
-  return lang === 'en'
-    ? dayNames.en[newDate.getDay()]
-    : dayNames.ru[newDate.getDay()];
+  return dayNames[lang][date.getDay()];
 }
 
 // Принимает объект даты, и должно вернуть компоненты даты в виде строки.
@@ -36,10 +33,10 @@ function getDay(date, lang) {
 function formatTime(date) {
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  let result = '';
-  result = hours < 10 ? `0${hours}:` : `${hours}:`;
-  result = minutes < 10 ? `${result}0${minutes}` : `${result}${minutes}`;
-  return result;
+  let getTwoDig = (number) => {
+    return number < 10 ? `0${number}` : number;
+  };
+  return `${getTwoDig(hours)}:${getTwoDig(minutes)}`;
 }
 
 /*
